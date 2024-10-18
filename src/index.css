@@ -5,6 +5,6 @@
 
 .text-stroke {
     color: var(--text-display, #080E52); /* Text color */
-    -webkit-text-stroke-width: 8px; /* Stroke width */
+    -webkit-text-stroke-width: 6px; /* Stroke width */
     -webkit-text-stroke-color: var(--neutrals-basse-white, #FCFCFC); /* Stroke color */
   }

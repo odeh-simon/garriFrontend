@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
-import bgImage from '../assets/authBg.png';
+import desktopBgImage from '../assets/authBg.png';
+import mobileBgImage from '../assets/authMobileBg.png';
+import tabletBgImage from '../assets/authTabBg.png';
 import garriLogo from '../assets/garri logo.svg';
 import eyeOpen from '../assets/eye-open.svg';
 import eyeClosed from '../assets/eye-closed.svg';
@@ -7,6 +9,7 @@ import { SignUpContext } from '../context/SignUpContext';
 import axios from 'axios';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
+import useWindowSize from '../hooks/UseWindowSize';
 
 export default function SignUp() {
   const { accountType, signupMethod } = useContext(SignUpContext);
@@ -20,6 +23,7 @@ export default function SignUp() {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
   const options = countryList().getData(); // Fetch the country list data
+  const size = useWindowSize();
 
    // Validation error states
    const [emailError, setEmailError] = useState('');
@@ -75,33 +79,37 @@ export default function SignUp() {
     }
   };
   
-
-
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
   const backgroundImage = {
-    backgroundImage: `url(${bgImage})`,
+    backgroundImage: `url(${
+      size.width <= 500
+        ? mobileBgImage
+        : size.width <= 1023
+        ? tabletBgImage
+        : desktopBgImage
+    })`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    minHeight: '100vh',
   };
 
   return (
-    <div className='flex gap-[75.75px] w-full h-[100%]'>
+    <div className='flex flex-col lg:flex-row gap-[24px] lg:gap-[75.75px] lg:pr-[32px] w-full h-[100%]'>
       {/* Background Image Section */}
-      <div className='w-[45%] pt-9 pl-5' style={backgroundImage}>
+      <div className='w-full lg:w-[55%] flex flex-col items-center lg:items-start gap-6 pt-9 pl-5 h-[30vh] lg:h-auto' style={backgroundImage}>
         <div className='flex gap-2 items-center'>
           <img src={garriLogo} alt="logo" className='w-9 h-9' />
-          <p className='text-[#FCFCFC] font-roboto text-[40px] font-bold'>Garri Market Place</p>
+          <p className='text-[#FCFCFC] font-roboto text-[28px] lg:text-[40px] lg:font-bold'>Garri Market Place</p>
         </div>
+        <h1 className='text-stroke flex items-center font-roboto text-[90px] md:text-[128px] font-bold lg:hidden'>Sign Up</h1>
       </div>
       
       {/* Sign Up Form Section */}
-      <div className='w-[40%] flex flex-col justify-center py-8 h-[100%]'>
-        <h2 className='text-[32px] font-roboto font-bold text-[#080E52] mb-4'>Sign Up</h2>
+      <div className='w-[90%] mx-auto lg:mx-0 lg:w-[40%] flex flex-col justify-center py-8 h-[100%]'>
+        <h2 className='text-[32px] font-roboto font-bold text-[#080E52] mb-4 hidden lg:block'>Sign Up</h2>
 
         <form onSubmit={handleSubmit} className='w-full space-y-2'>
           {/* Full Name */}

@@ -1,25 +1,34 @@
 import { useState } from 'react';
-import bgImage from '../assets/authBg.png';
+import desktopBgImage from '../assets/authBg.png';
+import mobileBgImage from '../assets/authMobileBg.png';
+import tabletBgImage from '../assets/authTabBg.png';
 import garriLogo from '../assets/garri logo.svg';
 import eyeOpen from '../assets/eye-open.svg';
 import eyeClosed from '../assets/eye-closed.svg';
 import googleIcon from '../assets/google-login.svg';
 import fbIcon from '../assets/fb-login.svg';
 import axios from 'axios';
+import useWindowSize from '../hooks/UseWindowSize';
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
+    const size = useWindowSize();
 
     const backgroundImage = {
-        backgroundImage: `url(${bgImage})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '100vh',
-      };
+      backgroundImage: `url(${
+        size.width <= 500
+          ? mobileBgImage
+          : size.width <= 1023
+          ? tabletBgImage
+          : desktopBgImage
+      })`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    };
 
        // Validation error states
    const [emailError, setEmailError] = useState('');
@@ -73,23 +82,23 @@ export default function Login() {
     };
   return (
     <>
-        <div className='flex gap-[75.75px] w-full h-[100%]'>
-            <div className='w-[50%] pt-9 pl-5' style={backgroundImage}>
+        <div className='flex flex-col lg:flex-row gap-[24px] lg:gap-[75.75px] lg:pr-[32px] w-full h-[100%]'>
+            <div className='w-full lg:w-[55%] flex flex-col items-center lg:items-start gap-6 pt-9 pl-5 h-[30vh] lg:h-auto' style={backgroundImage}>
                 <div className='flex gap-2 items-center'>
                     <img src={garriLogo} alt="logo" className='w-9 h-9' />
-                    <p className='text-[#FCFCFC] font-roboto text-[40px] font-bold'>Garri Market Place</p>
+                    <p className='text-[#FCFCFC] font-roboto text-[28px] md:text-[32px] lg:text-[40px] lg:font-bold'>Garri Market Place</p>
                 </div>
-
-                <div className='flex items-center justify-center'>
-                    <h2 className='text-stroke text-[#080E52] font-roboto text-[120px] font-bold'>
+                <h1 className='text-stroke flex items-center font-roboto text-[90px] md:text-[128px] font-bold lg:hidden'>Login</h1>
+                <div className='lg:flex items-center justify-center hidden'>
+                    <h2 className='text-stroke text-[#080E52] font-roboto text-[100px] xl:text-[120px] font-bold'>
                         WELCOME BACK
                     </h2>
                 </div>
             </div>
 
            {/* Login Form Section */}
-            <div className='w-[40%] flex flex-col justify-center py-8 h-[100%]'>
-                <h2 className='text-[32px] font-roboto font-bold text-[#080E52] mb-4'>Login</h2>
+            <div className='w-[90%] mx-auto lg:mx-0 lg:w-[40%] flex flex-col justify-center py-8 h-[100%]'>
+                <h2 className='text-[32px] font-roboto font-bold text-[#080E52] mb-4 hidden lg:block'>Login</h2>
 
                 <form onSubmit={handleSubmit} className='w-full space-y-2'>
                     {/* Email */}
@@ -165,7 +174,7 @@ export default function Login() {
                     </div>
 
                     <div className='flex gap-5 items-center justify-center'>
-                        <button>
+                        <button >
                             <img src={googleIcon} alt="google login" />
                         </button>
                         <button>

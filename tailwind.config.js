@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'], // Add Roboto as a custom font
       },
+      boxShadow: {
+        'custom': '0px 4px 4px 0px rgba(106, 116, 242, 0.35)', // Custom shadow
+      },
     },
   },
   plugins: [],

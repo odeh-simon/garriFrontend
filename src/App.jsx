@@ -1,8 +1,10 @@
 import {RouterProvider, createBrowserRouter } from "react-router-dom";
-import Splash from "./pages/splash";
+import Splash from "./modules/splash";
 import { SignupProvider } from "./context/SignUpContext";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
+import SignUp from "./modules/SignUp";
+import Login from "./modules/Login";
+import Home from "./modules/home/Home";
+import CategoriesPage from "./modules/category/Category";
 
 
 const router = createBrowserRouter([
@@ -18,6 +20,17 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />
   },
+
+  {
+    path: '/home',
+    element: <Home />
+  },
+  
+  {
+    path: '/categories',
+    element: <CategoriesPage />
+  }
+
   
 ]);
 

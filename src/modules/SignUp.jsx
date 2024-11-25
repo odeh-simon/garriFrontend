@@ -26,6 +26,7 @@ export default function SignUp() {
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
   const options = countryList().getData(); // Fetch the country list data
 
+  const size = useWindowSize();
   const handleCountryChange = (selectedOption) => {
     // Extract only the value (country code)
     setCountry(selectedOption.label); 
@@ -69,8 +70,6 @@ export default function SignUp() {
       return;
     }
 
- 
-  
     const signupData = {
       email,
       full_name,
@@ -132,8 +131,8 @@ export default function SignUp() {
       </div>
       
       {/* Sign Up Form Section */}
-      <div className='w-[40%] flex flex-col justify-center py-8 h-[100%]'>
-        <h2 className='text-[32px] font-roboto font-bold text-[#080E52] mb-4'>Sign Up</h2>
+      <div className='w-[90%] mx-auto lg:w-[40%] lg:mx-0 flex flex-col justify-center py-8 h-[100%]'>
+      <h2 className='text-[32px] font-roboto font-bold text-[#080E52] mb-4 hidden lg:block'>Sign Up</h2>
         {serverError && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
                     <span>{serverError}</span>

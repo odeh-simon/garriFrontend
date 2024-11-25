@@ -83,7 +83,7 @@ export default function Login() {
   return (
     <>
         <div className='flex flex-col lg:flex-row gap-[24px] lg:gap-[75.75px] lg:pr-[32px] w-full h-[100%]'>
-            <div className='w-full lg:w-[55%] flex flex-col items-center lg:items-start gap-6 pt-9 pl-5 h-[30vh] lg:h-auto' style={backgroundImage}>
+            <div className='w-full lg:w-[55%] flex flex-col items-center lg:items-start gap-6 pt-9 pl-5 h-[30vh] lg:h-[100vh]' style={backgroundImage}>
                 <div className='flex gap-2 items-center'>
                     <img src={garriLogo} alt="logo" className='w-9 h-9' />
                     <p className='text-[#FCFCFC] font-roboto text-[28px] md:text-[32px] lg:text-[40px] lg:font-bold'>Garri Market Place</p>

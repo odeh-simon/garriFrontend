@@ -16,7 +16,7 @@ export default function Home() {
     minHeight: '100vh',
   };
   return (
-    <div style={backgroundImage} className='flex flex-col min-h-[100vh]'>
+    <div style={backgroundImage} className='flex flex-col min-h-[100vh] pt-10'>
       <div className='flex-1'>
         <Navbar />
         

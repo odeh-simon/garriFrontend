@@ -6,7 +6,7 @@ import instagramIcon from '../assets/footer/instagram.svg';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0C0D56] text-white flex gap-3 md:justify-between items-center px-2 lg:px-4 py-6 w-full">
+    <footer className="bg-[#0C0D56] text-white flex gap-3 md:justify-between items-center px-2 lg:px-4 py-6 w-full z-50">
       
       {/* Left Section (Privacy and Terms) */}
       <div className="flex flex-col gap-2">

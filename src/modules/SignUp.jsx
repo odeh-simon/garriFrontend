@@ -10,18 +10,19 @@ import axios from 'axios';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import useWindowSize from '../hooks/UseWindowSize';
+import { signup } from '../api/authApi';
+import { areCookiesEnabled } from '../utils/cookiesUtils';
 
 export default function SignUp() {
   const [serverError, setServerError] = useState('')
   const { accountType, signupMethod } = useContext(SignUpContext);
   const [email, setEmail] = useState('');
-  const [full_name, setName] = useState('');
-  const [phone_number, setPhone] = useState('');
+  const [fullName, setName] = useState('');
+  const [phoneNumber, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState(password);
   const [country, setCountry] = useState('');
   const [state, setState] = useState('');
-  const [postal_code, setPostalcode] = useState('');
+  const [postalCode, setPostalcode] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
   const options = countryList().getData(); // Fetch the country list data
@@ -70,29 +71,32 @@ export default function SignUp() {
       return;
     }
 
+    
+
     const signupData = {
       email,
-      full_name,
-      phone_number,
+      fullName,
+      phoneNumber,
       password,
       accountType,
       signupMethod,
       country,
       state,
-      postal_code,
+      postalCode,
     };
 
     console.log(signupData)
-  
-    try {
-      const response = await axios.post('http://localhost:3000/api/auth/signup', signupData);
-      console.log('User created:', response.data);
-      // Handle successful signup (e.g., navigate to the next page)
 
-    } catch (error) {
+    try{
+      const response = await signup(signupData);
+      if(!areCookiesEnabled()) {
+        const token = response.data.token;
+        localStorage.setItem('authToken', token)
+      }
+    }catch (error) {
       if (error.response && error.response.data) {
         // Set the error message returned from the server
-        setServerError(error.response.data.msg);
+        setServerError(error.response.data.message);
         window.scrollTo(0, 0);
       } else {
         // Fallback for any other error
@@ -100,6 +104,7 @@ export default function SignUp() {
       }
       console.error('Error during signup:', error);
     }
+  
   };
   
   const togglePasswordVisibility = () => {
@@ -157,7 +162,7 @@ export default function SignUp() {
             <label className='block text-[#828F9B] font-roboto text-[18px] font-bold mb-1'>Full Name</label>
             <input
               type='text'
-              value={full_name}
+              value={fullName}
               onChange={(e) => setName(e.target.value)}
               className='w-full border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 p-2 placeholder-[#E8EBED]'
               placeholder='Enter your full name'
@@ -184,7 +189,7 @@ export default function SignUp() {
             <label className='block text-[#828F9B] font-roboto text-[18px] font-bold mb-1'>Phone</label>
             <input
               type='tel'
-              value={phone_number}
+              value={phoneNumber}
               onChange={(e) => setPhone(e.target.value)}
               className='w-full border-b-2 border-gray-300 focus:outline-none focus:border-blue-500 p-2 placeholder-[#E8EBED]'
               placeholder='Enter your phone number'
@@ -242,7 +247,7 @@ export default function SignUp() {
             <label className='block text-[#828F9B] font-roboto text-[18px] font-bold mb-1'>Postal Code</label>
             <input
               type='text'
-              value={postal_code}
+              value={postalCode}
               onChange={(e) => setPostalcode(e.target.value)}
               className='w-full border-b-2 border-gray-300 mb-4 focus:outline-none focus:border-blue-500 p-2 placeholder-[#E8EBED]'
               placeholder='Enter your postal code'

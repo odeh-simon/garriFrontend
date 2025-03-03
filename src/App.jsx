@@ -5,6 +5,7 @@ import SignUp from "./modules/SignUp";
 import Login from "./modules/Login";
 import Home from "./modules/home/Home";
 import CategoriesPage from "./modules/category/Category";
+import CategoriesFilterPage from "./modules/category/CategoriesFilterPage";
 
 
 const router = createBrowserRouter([
@@ -29,7 +30,12 @@ const router = createBrowserRouter([
   {
     path: '/categories',
     element: <CategoriesPage />
-  }
+  },
+
+  {
+    path: '/categories/:category',
+    element: <CategoriesFilterPage />,
+  },
 
   
 ]);

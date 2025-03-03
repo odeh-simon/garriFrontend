@@ -68,13 +68,13 @@ export default function Login() {
       password,
     };
   
-    try {
-      const response = await axios.post('/api/signup', loginData);
-      console.log('User created:', response.data);
-      // Handle successful signup (e.g., navigate to the next page)
-    } catch (error) {
-      console.error('Error during signup:', error);
-    }
+    // try {
+    //   const response = await axios.post('/api/signup', loginData);
+    //   console.log('User created:', response.data);
+    //   // Handle successful signup (e.g., navigate to the next page)
+    // } catch (error) {
+    //   console.error('Error during signup:', error);
+    // }
   };
 
     const togglePasswordVisibility = () => {

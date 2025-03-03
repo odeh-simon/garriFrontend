@@ -1,0 +1,97 @@
+import rice from '../assets/products/rice.png';
+import millet from '../assets/products/millet.png';
+import corn from '../assets/products/corn.png';
+import flower from '../assets/products/flower.png';
+
+export const products = [
+  {
+    id: '1',
+    name: 'Browntop Millet',
+    price: 15,
+    location: 'Lagos, Victoria Island',
+    image: millet,
+    isVerified: true,
+    rating: 4.5,
+    phone: '123-456-7890',
+    reviews: ['Great product!', 'Very fresh and clean.'],
+    priceHistory: [
+      { date: '2025-01-01', price: 14 },
+      { date: '2025-02-01', price: 15 },
+    ],
+  },
+  {
+    id: '2',
+    name: 'Little Creek Shelled Corn',
+    price: 20,
+    location: 'Lagos, Victoria Island',
+    image: corn,
+    isVerified: false,
+    rating: 4.0,
+    phone: '123-456-7891',
+    reviews: ['Good quality.', 'Will buy again.'],
+    priceHistory: [
+      { date: '2025-01-01', price: 18 },
+      { date: '2025-02-01', price: 20 },
+    ],
+  },
+  {
+    id: '3',
+    name: 'Mama Gold Rice',
+    price: 12,
+    location: 'Lagos, Victoria Island',
+    image: rice,
+    isVerified: true,
+    rating: 4.8,
+    phone: '123-456-7892',
+    reviews: ['Excellent rice!', 'Highly recommended.'],
+    priceHistory: [
+      { date: '2025-01-01', price: 11 },
+      { date: '2025-02-01', price: 12 },
+    ],
+  },
+  {
+    id: '4',
+    name: 'Flowers from Paris',
+    price: 45,
+    location: 'Lagos, Victoria Island',
+    image: flower,
+    isVerified: false,
+    rating: 4.2,
+    phone: '123-456-7893',
+    reviews: ['Beautiful flowers.', 'Very fresh.'],
+    priceHistory: [
+      { date: '2025-01-01', price: 40 },
+      { date: '2025-02-01', price: 45 },
+    ],
+  },
+  {
+    id: '5',
+    name: 'Flowers from Paris',
+    price: 45,
+    location: 'Lagos, Victoria Island',
+    image: flower,
+    isVerified: false,
+    rating: 4.2,
+    phone: '123-456-7893',
+    reviews: ['Beautiful flowers.', 'Very fresh.'],
+    priceHistory: [
+      { date: '2025-01-01', price: 40 },
+      { date: '2025-02-01', price: 45 },
+    ],
+  },
+  {
+    id: '6',
+    name: 'Flowers from Paris',
+    price: 45,
+    location: 'Lagos, Victoria Island',
+    image: flower,
+    isVerified: false,
+    rating: 4.2,
+    phone: '123-456-7893',
+    reviews: ['Beautiful flowers.', 'Very fresh.'],
+    priceHistory: [
+      { date: '2025-01-01', price: 40 },
+      { date: '2025-02-01', price: 45 },
+    ],
+  },
+];

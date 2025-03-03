@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import garriCoin from '../../assets/products/garri-coin.svg';
-import newBanner from '../../assets/products/new-banner.svg';
-import verifiedIcon from '../../assets/products/verified user.svg';
-import unverifiedIcon from '../../assets/products/unverified-user.svg';
-import locationIcon from '../../assets/products/location-icon.svg';
+import garriCoin from '../../../assets/products/garri-coin.svg';
+import newBanner from '../../../assets/products/new-banner.svg';
+import verifiedIcon from '../../../assets/products/verified user.svg';
+import unverifiedIcon from '../../../assets/products/unverified-user.svg';
+import locationIcon from '../../../assets/products/location-icon.svg';
 
 const ProductCard = ({ product, isNew }) => {
   const [liked, setLiked] = useState(false);
@@ -19,7 +20,9 @@ const ProductCard = ({ product, isNew }) => {
       )}
 
       {/* Product Image */}
-      <img src={product.image} alt={product.name} className="w-full h-32 object-contain" />
+      <Link to={`/product/${product.id}`}>
+        <img src={product.image} alt={product.name} className="w-full h-32 object-contain" />
+      </Link>
 
       {/* Product Info */}
       <div className="mt-2 flex flex-col gap-3">
@@ -78,6 +81,7 @@ const ProductCard = ({ product, isNew }) => {
 // Define PropTypes for the component to ensure the expected data types are passed
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,

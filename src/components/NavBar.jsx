@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-[#151C71] px-4 py-2 flex justify-between items-center">
+    <nav className="bg-[#151C71] px-4 py-2 flex justify-between items-center fixed left-0 right-0 z-50 top-0">
       {/* Logo */}
       <div className="flex items-center">
         <img src={logo} alt="Logo" className="h-[auto] w-[100px] hidden lg:block" />

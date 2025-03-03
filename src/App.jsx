@@ -7,6 +7,8 @@ import Home from './modules/home/Home';
 import CategoriesPage from './modules/category/Category';
 import ProductDetails from './modules/products/components/ProductDetails';
 import { BreadcrumbProvider } from './context/BreadCrumbContext';
+import CategoriesFilterPage from "./modules/category/CategoriesFilterPage";
+
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,11 @@ const router = createBrowserRouter([
   {
     path: '/categories',
     element: <CategoriesPage />,
+  },
+
+  {
+    path: '/categories/:category',
+    element: <CategoriesFilterPage />,
   },
   {
     path: '/product/:productId',

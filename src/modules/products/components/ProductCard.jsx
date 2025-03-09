@@ -6,12 +6,21 @@ import newBanner from '../../../assets/products/new-banner.svg';
 import verifiedIcon from '../../../assets/products/verified user.svg';
 import unverifiedIcon from '../../../assets/products/unverified-user.svg';
 import locationIcon from '../../../assets/products/location-icon.svg';
+import { useCart } from "../../../context/CartContext";
+
 
 const ProductCard = ({ product, isNew }) => {
   const [liked, setLiked] = useState(false);
+  const { addItemToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addItemToCart(product);
+  };
+
+
 
   return (
-    <div className="relative border-[1px] border-[#040E42] bg-white shadow-lg rounded-[4px] p-2 flex-shrink-0 w-[calc(100%/2-1rem)] sm:w-[calc(100%/3-1rem)] lg:w-[calc(100%/4-1rem)] m-2">
+    <div className="relative border-[1px] border-[#040E42] bg-white shadow-lg rounded-[4px] p-2 w- flex-shrink-0 m-2">
       {/* New Product Banner */}
       {isNew && (
         <div className="absolute top-0 left-0 w-[40px] h-[112px]">
@@ -48,7 +57,9 @@ const ProductCard = ({ product, isNew }) => {
       </div>
 
       {/* Add to Cart Button */}
-      <button className="bg-[#151C71] text-white mt-3 px-4 py-2 rounded-[6px] w-full">
+      <button
+       onClick={handleAddToCart} 
+      className="bg-[#151C71] text-white mt-3 px-4 py-2 rounded-[6px] w-full">
         Add to Cart
       </button>
 

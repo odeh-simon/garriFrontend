@@ -1,17 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { categories } from '../components/CategoryData';
 import arrow from '../../../assets/categories/arrow-down.svg';
 
 const Categories = ({ limit, showSeeAll }) => {
   const displayedCategories = limit ? categories.slice(0, limit) : categories;
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (categoryName) => {
+    navigate(`/categories/${categoryName}`);
+  };
 
   return (
     <div className="mb-4 p-4">
-      
       {/* Display a 2x2 grid when limit is provided, otherwise display a 2-column layout with multiple rows */}
       <div className={`grid ${limit ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-2'} gap-3 w-full lg:w-[72%] mx-auto`}>
         {displayedCategories.map((category, index) => (
-          <div key={index} className="relative bg-white shadow-md overflow-hidden">
+          <div
+            key={index}
+            className="relative bg-white shadow-md overflow-hidden cursor-pointer"
+            onClick={() => handleCategoryClick(category.name)}
+          >
             <img 
               src={category.image} 
               alt={category.name} 
@@ -34,7 +42,6 @@ const Categories = ({ limit, showSeeAll }) => {
           </Link>
         )}
       </div>
-    
     </div>
   );
 };

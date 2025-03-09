@@ -12,19 +12,28 @@ export const BreadcrumbProvider = ({ children }) => {
     // Convert pathname to a display name.
     const getRouteName = (pathname) => {
       const lowerPath = pathname.toLowerCase();
-      if (lowerPath === '/home' || lowerPath === 'home') return 'Home';
-      if (lowerPath.startsWith('/productdetails')) return 'Product Details';
+
+      if (lowerPath === '/' || lowerPath === '/splash') {
+        return 'Splash';
+      }
+      if (lowerPath === '/home' || lowerPath === 'home') {
+        return 'Home';
+      }
+      // If the route is for a product, show "Product Details" instead of the id.
+      if (lowerPath.startsWith('/product/')) {
+        return 'Product Details';
+      }
+      // Add more custom cases as needed
+      // For any other route, use the last segment and capitalize it.
       const parts = pathname.split('/').filter(Boolean);
-      // Capitalize the last segment by default
+      if (!parts.length) return '';
       const segment = parts[parts.length - 1];
-        return segment.charAt(0).toUpperCase() + segment.slice(1);
+      return segment.charAt(0).toUpperCase() + segment.slice(1);
     };
-    
-    BreadcrumbProvider.propTypes = {
-      children: PropTypes.node.isRequired,
-    };
-  
-    // Update breadcrumbs: If the current route already exists, trim the trail
+
+    // Update breadcrumbs:
+    // If the current route exists already in the trail, trim the trail.
+    // Otherwise, append the new route.
     setBreadcrumbs(prev => {
       const foundIndex = prev.findIndex(b => b.pathname === location.pathname);
       if (foundIndex !== -1) {
@@ -40,4 +49,8 @@ export const BreadcrumbProvider = ({ children }) => {
       {children}
     </BreadcrumbContext.Provider>
   );
+};
+
+BreadcrumbProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

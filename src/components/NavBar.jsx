@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import logo from '../assets/home/logo.svg';
 import mobileLogo from '../assets/home/logo-mobile.svg';
 import searchIcon from '../assets/navbar/search-icon.svg';
 import filterIcon from '../assets/navbar/filter-icon.svg';
 import profileIcon from '../assets/navbar/user-icon2.svg'; // Add profile icon
 import cartIcon from '../assets/navbar/cart-icon.svg'; // Add cart icon
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activePage, setActivePage] = useState('Home'); // Default active page
+  const [activePage, setActivePage] = useState(''); // Default active page
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Track authentication status
+  const navigate = useNavigate();
+  const { items } = useCart();
+  const itemsCount = items?.length;
+
 
   // Toggle the menu
   const toggleMenu = () => {
@@ -17,9 +24,10 @@ const Navbar = () => {
   };
 
   // Function to handle link click and set active page
-  const handleLinkClick = (page) => {
+  const handleLinkClick = (page, path) => {
     setActivePage(page);
     setMenuOpen(false); // Close the menu when an option is selected on mobile
+    navigate(path);
   };
 
   return (
@@ -53,10 +61,11 @@ const Navbar = () => {
       <div className="lg:hidden flex items-center gap-4">
         {isAuthenticated ? (
           <>
-            <button>
+            <button onClick={()=> navigate('/cart')} className='relative'>
               <img src={cartIcon} alt="Cart" className="w-[24px] h-[24px]" />
+              {itemsCount > 0 && <span className="absolute -top-1 -right-2 bg-red-400 font-roboto font-bold shadow text-white px-2 py-1 w-3 h-[14px] flex items-center justify-center text-[8px] rounded-[50px]">{itemsCount}</span>}
             </button>
-            <button>
+            <button onClick={()=> navigate('/profile')}>
               <img src={profileIcon} alt="Profile" className="w-[24px] h-[24px]" />
             </button>
           </>
@@ -65,42 +74,39 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <div className="hidden lg:flex gap-6 items-center">
-        <a
-          href="#"
+        <button
           className={`text-[#FCFCFC] font-roboto text-lg ${activePage === 'Home' ? 'border-b-2 border-white' : ''}`}
-          onClick={() => handleLinkClick('Home')}
+          onClick={() => handleLinkClick('Home', '/home')}
         >
           Home
-        </a>
-        <a
-          href="#"
+        </button>
+        <button
           className={`text-[#FCFCFC] font-roboto text-lg ${activePage === 'Marketplace' ? 'border-b-2 border-white' : ''}`}
-          onClick={() => handleLinkClick('Marketplace')}
+          onClick={() => handleLinkClick('Marketplace', '/marketplace')}
         >
           Marketplace
-        </a>
-        <a
-          href="#"
+        </button>
+        <button
           className={`text-[#FCFCFC] font-roboto text-lg ${activePage === 'Connect Wallet' ? 'border-b-2 border-white' : ''}`}
-          onClick={() => handleLinkClick('Connect Wallet')}
+          onClick={() => handleLinkClick('Connect Wallet', '/connect-wallet')}
         >
           Connect Wallet
-        </a>
-        <a
-          href="#"
+        </button>
+        <button
           className={`text-[#FCFCFC] font-roboto text-lg ${activePage === 'About Us' ? 'border-b-2 border-white' : ''}`}
-          onClick={() => handleLinkClick('About Us')}
+          onClick={() => handleLinkClick('About Us', '/about-us')}
         >
           About Us
-        </a>
+        </button>
 
         {/* Conditionally render login/signup or profile/cart based on authentication */}
         {isAuthenticated ? (
           <div className="flex items-center gap-4">
-            <button>
+            <button onClick={()=> navigate('/cart')} className='relative'>
               <img src={cartIcon} alt="Cart" className="w-[24px] h-[24px]" />
+              {itemsCount > 0 && <span className="absolute -top-1 -right-2 bg-red-400 font-roboto font-bold shadow text-white px-2 py-1 w-3 h-[14px] flex items-center justify-center text-[8px] rounded-[50px]">{itemsCount}</span>}
             </button>
-            <button>
+            <button onClick={()=> navigate('/profile')}>
               <img src={profileIcon} alt="Profile" className="w-[24px] h-[24px]" />
             </button>
           </div>
@@ -144,40 +150,38 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="fixed top-14 right-4 bottom-4 w-1/2 bg-white shadow-lg z-50 flex flex-col items-start py-4 px-6">
-          <a
-            href="#"
-            className={` mb-4 text-lg ${activePage === 'Home' ? 'text-[#080E52]' : 'text-[#D2D6DB]'}`}
-            onClick={() => handleLinkClick('Home')}
+          <button
+            className={` mb-4 text-lg ${activePage === 'Home' ? 'text-[#080E52]' : 'text-[#0b192a]'}`}
+            onClick={() => handleLinkClick('Home', '/home')}
           >
             Home
-          </a>
-          <a
-            href="#"
+          </button>
+          <button
             className={`text-blue-900 mb-4 text-lg ${activePage === 'Marketplace' ? 'text-[#080E52]' : 'text-[#D2D6DB]'}`}
-            onClick={() => handleLinkClick('Marketplace')}
+            onClick={() => handleLinkClick('Marketplace', '/marketplace')}
           >
             Marketplace
-          </a>
-          <a
-            href="#"
+          </button>
+          <button
             className={`text-blue-900 mb-4 text-lg ${activePage === 'Connect Wallet' ? 'text-[#080E52]' : 'text-[#D2D6DB]'}`}
-            onClick={() => handleLinkClick('Connect Wallet')}
+            onClick={() => handleLinkClick('Connect Wallet', '/connect-wallet')}
           >
             Connect Wallet
-          </a>
-          <a
-            href="#"
+          </button>
+          <button
             className={`text-blue-900 mb-4 text-lg ${activePage === 'About Us' ? 'text-[#080E52]' : 'text-[#D2D6DB]'}`}
-            onClick={() => handleLinkClick('About Us')}
+            onClick={() => handleLinkClick('About Us', '/about-us')}
           >
             About Us
-          </a>
+          </button>
 
           {/* Conditionally render login/signup or profile/cart based on authentication in mobile view */}
           <div className="mt-auto w-full flex flex-col items-center justify-center space-y-4">
             {isAuthenticated ? (
               <div>
-                
+                <button onClick={()=> navigate('/profile')}>
+                  <img src={profileIcon} alt="Profile" className="w-[24px] h-[24px]" />
+                </button>
               </div>
             ) : (
               <>

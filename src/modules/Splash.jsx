@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import bgImage from '../assets/splashBg.png';
 import garriLogo from '../assets/garri logo.svg';
 import cartIcon from '../assets/cart-icon.svg';

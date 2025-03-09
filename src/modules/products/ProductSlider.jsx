@@ -22,7 +22,7 @@ const ProductSlider = ({ products, category }) => {
       <div className="relative">
         {/* Slider */}
         <div
-          className="flex space-x-4 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="flex overflow-x-auto scrollbar-hide scroll-smooth"
           ref={sliderRef}
         >
           {products.map((product, index) => (

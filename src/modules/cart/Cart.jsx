@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import garriCoin from "../../assets/products/garri-coin.svg";
 import plusIcon from "../../assets/plus-icon.svg";
 import minusIcon from "../../assets/minus-icon.svg";
-
+import { useNavigate } from "react-router-dom";
 const StarRating = ({ rating }) => {
   const stars = Array.from({ length: 5 }, (_, index) => {
     const isFilled = index < rating;
@@ -30,6 +30,7 @@ const Cart = () => {
     decreaseItemQuantity,
   } = useCart();
 
+  const navigate = useNavigate();
   const calculateTotalPrice = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
@@ -144,6 +145,7 @@ const Cart = () => {
               </div>
             </div>
             <button
+              onClick={() => navigate("/escrow")}
               type="button"
               className="w-full lg:w-[50%] lg:mx-auto flex items-center justify-center text-lg bg-[#151C71] text-[#FCFCFC] font-bold py-2 rounded-md hover:bg-[#273094] transition"
             >

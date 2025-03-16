@@ -16,6 +16,13 @@ import UpdatePassword from './modules/profile/components/UpdatePassword';
 import { CartProvider } from './context/CartContext';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import EscrowPay from './modules/escrow/EscrowPay';
+import RecievedProduct from './modules/escrow/components/RecievedProduct';
+import ProductReview from './modules/escrow/components/ProductReview';
+import SubmitComplaints from './modules/escrow/components/SubmitComplaints';
+import About from './public/about us/About';
+import Wallet from './modules/profile/components/Wallet';
+//import SellerInventory from './modules/profile/components/Inventory';
 
 
 const Root = () => (
@@ -44,6 +51,13 @@ const router = createBrowserRouter([
       { path: '/cart', element: <Cart /> },
       { path: '/profile', element: <Profile /> },
       { path: '/update-password', element: <UpdatePassword /> },
+      { path: '/escrow', element: <EscrowPay /> },
+      { path: '/recieved-product', element: <RecievedProduct /> },
+      { path: '/product-review', element: <ProductReview /> },
+      { path: '/submit-complaints', element: <SubmitComplaints /> },
+      { path: '/about-us', element: <About /> },
+      { path: '/wallet', element: <Wallet /> },
+      // { path: '/seller-inventory/:sellerId', element: <SellerInventory/> },
     ],
   },
   {

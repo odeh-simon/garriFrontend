@@ -29,6 +29,7 @@ export const products = [
       { date: '2025-03-01', price: 69 },
     ],
     category: 'Seeds',
+    sellerId: '1',
   },
   {
     id: '2',
@@ -51,6 +52,7 @@ export const products = [
       { date: '2025-02-01', price: 20 },
     ],
     category: 'Flowers',
+    sellerId: '2',
   },
   {
     id: '3',
@@ -73,6 +75,7 @@ export const products = [
       { date: '2025-02-01', price: 12 },
     ],
     category: 'Fertilizers',
+    sellerId: '3',
   },
   {
     id: '4',
@@ -95,6 +98,7 @@ export const products = [
       { date: '2025-02-01', price: 45 },
     ],
     category: 'Farming tools',
+    sellerId: '4',
   },
   {
     id: '5',
@@ -117,6 +121,7 @@ export const products = [
       { date: '2025-02-01', price: 45 },
     ],
     category: 'Seeds',
+    sellerId: '1',
   },
   {
     id: '6',
@@ -139,5 +144,6 @@ export const products = [
       { date: '2025-02-01', price: 45 },
     ],
     category: 'Flowers',
+    sellerId: '2',
   },
 ];

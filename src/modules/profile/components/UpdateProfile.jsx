@@ -84,6 +84,9 @@ const ProfileUpdate = (userRole) => {
         isOpen={isModalOpen}
         onClose={handleModalClose}
         onConfirm={handleModalConfirm}
+        bodyText="An email will be sent to example@email.com to change password"
+        cancelButtonText="Cancel"
+        confirmButtonText="Continue"
       />
       {/* header text */}
       <div className="bg-[#151C71] lg:bg-gray-400 mb-6 py-1 mx-2">

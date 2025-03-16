@@ -80,15 +80,10 @@ const Navbar = () => {
         >
           Home
         </button>
-        <button
-          className={`text-[#FCFCFC] font-roboto text-lg ${activePage === 'Marketplace' ? 'border-b-2 border-white' : ''}`}
-          onClick={() => handleLinkClick('Marketplace', '/marketplace')}
-        >
-          Marketplace
-        </button>
+        {/* wallet */}
         <button
           className={`text-[#FCFCFC] font-roboto text-lg ${activePage === 'Connect Wallet' ? 'border-b-2 border-white' : ''}`}
-          onClick={() => handleLinkClick('Connect Wallet', '/connect-wallet')}
+          onClick={() => handleLinkClick('Connect Wallet', '/wallet')}
         >
           Connect Wallet
         </button>
@@ -156,15 +151,10 @@ const Navbar = () => {
           >
             Home
           </button>
-          <button
-            className={`text-blue-900 mb-4 text-lg ${activePage === 'Marketplace' ? 'text-[#080E52]' : 'text-[#D2D6DB]'}`}
-            onClick={() => handleLinkClick('Marketplace', '/marketplace')}
-          >
-            Marketplace
-          </button>
+          {/* wallet */}
           <button
             className={`text-blue-900 mb-4 text-lg ${activePage === 'Connect Wallet' ? 'text-[#080E52]' : 'text-[#D2D6DB]'}`}
-            onClick={() => handleLinkClick('Connect Wallet', '/connect-wallet')}
+            onClick={() => handleLinkClick('Connect Wallet', '/wallet')}
           >
             Connect Wallet
           </button>

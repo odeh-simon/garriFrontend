@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const UpdatePassword = () => {
   const [passwordData, setPasswordData] = useState({
@@ -16,6 +16,11 @@ const UpdatePassword = () => {
     // Handle password change logic here
     console.log("Password changed successfully");
   };
+
+   // Scroll to top on component mount
+   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex flex-col gap-8 items-center mt-[80px] min-h-screen">

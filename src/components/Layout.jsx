@@ -10,8 +10,8 @@ import bgImage from "../assets/home/bgImage.png";
 const Layout = ({ children }) => {
   const location = useLocation();
 
-  // Define paths where Breadcrumbs should not be displayed
-  const excludeBreadcrumbsPaths = [];
+  // paths where Breadcrumbs should not be displayed
+  const excludeBreadcrumbsPaths = ['/escrow', '/recieved-product', '/product-review', '/submit-complaints', '/about-us'];
   const excludeBreadcrumbsRegex = /^\/categories\/.+$/;
 
   // Scroll to top on component mount
